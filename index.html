@@ -1,11 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Banking</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="Style.css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+  <title>Home Banking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
+  <script src="https://kit.fontawesome.com/429b57eee3.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    
+  <div class="header">
+    <p class="title" style="color:white;"><i class="fas fa-wallet" style="color:white"></i> Home<strong>Banking</strong>
+    </p>
+    <div class="align-left">
+      <span id="nombre">Bienvenido/a</span>
+      <i class="far fa-user-circle" style="color:white"></i>
+    </div>
+  </div>
+  <div class="white-container">
+    <div class="menu-container">
+      <h1 class="tu-cuenta">Tu cuenta</h1>
+      <button class="links" onclick="extraerDinero()">Extraer dinero</button>
+      <button class="links" onclick="depositarDinero()">Depositar dinero</button>
+      <button class="links" onclick="pagarServicio()">Pagar servicios</button>
+      <button class="links" onclick="transferirDinero()">Transferir dinero</button>
+      <button class="links" onclick="cambiarLimiteDeExtraccion()">Cambiar límite de extracción</button>
+    </div>
+    <div class="dinero-container">
+      <div class="cuenta-info">
+        <p>Saldo en tu cuenta</p>
+        <h3 id="saldo-cuenta">$</h3>
+        <p id="limite-extraccion">Tu límite de extracción es: </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
+
 </html>
