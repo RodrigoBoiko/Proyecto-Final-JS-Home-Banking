@@ -324,3 +324,15 @@ function sumarDinero(data) {
     saldoCuenta += data
     return saldoCuenta
 }
+
+function cargarNombreEnPantalla() {
+    document.getElementById("nombre").innerHTML = "Bienvenido/a " + nombreUsuario
+}
+
+function actualizarSaldoEnPantalla() {
+    document.getElementById("saldo-cuenta").innerHTML = "$" + saldoCuenta
+}
+
+function actualizarLimiteEnPantalla() {
+    document.getElementById("limite-extraccion").innerHTML = "Tu límite de extracción es de: $" + limiteExtraccion
+}
