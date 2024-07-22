@@ -211,3 +211,41 @@ function pagarServicio() {
         }
     }
 }
+
+function transferirDinero() {
+    let montoATransfeir = prompt('Ingrese el monto que desea transferir:')
+    if (esUnNumero(parseInt(montoATransfeir))) {
+        montoATransfeir = parseInt(montoATransfeir)
+        if (esNegativo(montoATransfeir)) {
+            return
+        } else {
+            if (saldoSuficiente(montoATransfeir)) {
+                let cuentaATransferir = parseInt(prompt('Ingresa el Número de la cuenta a la que deseas transferir dinero:'))
+                if (esUnNumero(cuentaATransferir)) {
+                    if ((cuentaATransferir == cuentaAmiga1) || (cuentaATransferir == cuentaAmiga2)) {
+                        let saldoAnterior = saldoCuenta
+                        saldoCuenta = restarDinero(montoATransfeir)
+                        actualizarSaldoEnPantalla()
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Listo!',
+                            text: `Has realizado una transferencia de $${montoATransfeir}. Cuenta Amiga Número: ${cuentaATransferir}. Saldo Anterior: $${saldoAnterior}. Saldo actual: $${saldoCuenta}.`,
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'El código que ingresaste no corresponde a ninguna Cuenta Amiga.',
+                        })
+                    }
+                }
+
+            }
+        }
+    } else if (montoATransfeir == null) {
+        return
+    } else {
+        Swal.fire('El valor ingresado no es válido.')
+        return
+    }
+}
