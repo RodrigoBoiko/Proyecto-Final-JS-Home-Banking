@@ -299,3 +299,28 @@ function saldoSuficiente(data) {
     }
     return true
 }
+
+function esUnNumero(data) {
+    if (isNaN(data)) {
+        return false
+    }
+    return true
+}
+
+function esNegativo(data) {
+    if (Math.sign(data) === -1) {
+        Swal.fire('El valor ingresado no es válido.')
+        return true
+    }
+    return false
+}
+
+function restarDinero(data) {
+    saldoCuenta -= data
+    return saldoCuenta
+}
+
+function sumarDinero(data) {
+    saldoCuenta += data
+    return saldoCuenta
+}
