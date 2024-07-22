@@ -45,7 +45,7 @@
   
   .menu-container {
     display: block;
-    width: 40%;
+    width: 35%;
     padding-right: 20px;
   }
   
@@ -54,7 +54,7 @@
     margin: 0;
     margin-left: -30px;
     font-family: "Source Sans Pro";
-    font-size: 38px;
+    font-size: 32px;
     font-weight: normal;
     color: #282f38;
     border-left: 6px solid #12b347;
@@ -100,7 +100,7 @@
   
   .dinero-container {
     display: flex;
-    width: 60%;
+    width: 80%;
     text-align: center;
     color: white;
     border-radius: 8px;
