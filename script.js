@@ -170,3 +170,44 @@ function depositarDinero() {
         })
     })()
 }
+
+function pagarServicio() {
+    let servicioAPagar = prompt('Ingresa el número que corresponda al servicio que quieras pagar: \n1- Agua \n2- Luz \n3- Internet \n4- Telefono')
+    switch (servicioAPagar) {
+        case '1':
+            servicioAPagar = agua
+            break
+        case '2':
+            servicioAPagar = telefono
+            break
+        case '3':
+            servicioAPagar = luz
+            break
+        case '4':
+            servicioAPagar = internet
+            break
+        case null:
+            servicioAPagar = false
+            break
+        default:
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'El código no corresponde a un servicio habilitado.',
+            })
+            servicioAPagar = false
+            break
+    }
+    if (servicioAPagar) {
+        let dineroDisponible = saldoSuficiente(servicioAPagar)
+        if (dineroDisponible) {
+            restarDinero(servicioAPagar)
+            Swal.fire({
+                icon: 'success',
+                title: 'Listo!',
+                text: `El servicio ha sido abonado con éxito. Se debitaron $${servicioAPagar} de tu cuenta.`,
+            })
+            actualizarSaldoEnPantalla()
+        }
+    }
+}
