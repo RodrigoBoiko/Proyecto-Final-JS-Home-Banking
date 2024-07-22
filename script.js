@@ -124,3 +124,49 @@ function extraerDinero() {
         })
     })()
 }
+
+function depositarDinero() {
+    (async () => {
+        const {
+            value: $deposito
+        } = await Swal.fire({
+            icon: 'info',
+            title: `Depositar dinero:`,
+            text: `Ingresa el monto a depositar:`,
+            input: 'number',
+            showCancelButton: true,
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            inputValidator: (value) => {
+                if (esUnNumero(parseInt(value))) {
+                    value = parseInt(value)
+                    if (esNegativo(value)) {
+                        return
+                    } else {
+                        let saldoAnterior = saldoCuenta
+                        saldoCuenta = sumarDinero(value)
+                        actualizarSaldoEnPantalla()
+                        setTimeout(() => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Depósito exitoso:',
+                                text: `Has depositado: $${value}. Saldo Anterior: $${saldoAnterior}. Saldo actual: $${saldoCuenta}.`
+                            })
+                        }, 200);
+                    }
+                } else if (value == null) {
+                    return
+                } else {
+                    setTimeout(() => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'El valor ingresado no es válido.',
+                        })
+                    }, 200);
+                    return
+                }
+            }
+        })
+    })()
+}
