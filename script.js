@@ -249,3 +249,53 @@ function transferirDinero() {
         return
     }
 }
+
+function iniciarSesion() {
+    (async () => {
+        const {
+            value: codigoUsuario
+        } = await Swal.fire({
+            icon: 'question',
+            title: 'Contraseña:',
+            text: `Ingresa el código de acceso para la cuenta de: ${nombreUsuario}`,
+            input: 'password',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            inputValidator: (value) => {
+                if (value == codigoSeguridad) {
+                    setTimeout(() => {
+                        saldoCuenta = 10000
+                        actualizarSaldoEnPantalla()
+                        limiteExtraccion = 1000
+                        actualizarLimiteEnPantalla()
+                        Swal.fire({
+                            icon: 'success',
+                            title: `Bienvenido/a ${nombreUsuario}`,
+                            text: `Ya puedes comenzar a realizar operaciones.`,
+                        })
+                    }, 200)
+                    saldoCuenta = 10000
+                    actualizarSaldoEnPantalla()
+                } else if (value != codigoSeguridad) {
+                    saldoCuenta = 0
+                    actualizarSaldoEnPantalla()
+                    limiteExtraccion = 0
+                    actualizarLimiteEnPantalla()
+                    return 'El código ingresado es incorrecto. El dinero será retenido por cuestiones de seguridad.'
+                }
+            }
+        })
+    })()
+}
+
+function saldoSuficiente(data) {
+    if (data > saldoCuenta) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El saldo de la cuenta es insuficiente para realizar esta operación.',
+        })
+        return false
+    }
+    return true
+}
